@@ -24,6 +24,6 @@ $(document).ready(function () {
   });
 
   $('.form-edit').each(function (i, e) {
-    console.log(e.setAttribute('disabled', ''));
-  })
+    e.setAttribute('disabled', '');
+  });
 });

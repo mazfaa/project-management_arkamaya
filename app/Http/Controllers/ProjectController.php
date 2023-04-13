@@ -157,8 +157,10 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Project::whereIn('id', $request->ids)->delete();
+        Alert::success('Success!', 'The Project Deleted Successfully!');
+        return redirect(RouteServiceProvider::HOME);
     }
 }

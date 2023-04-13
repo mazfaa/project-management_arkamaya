@@ -2,7 +2,11 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="card">
-        <div class="card-header"><i class="bi bi-pencil-square"></i> Edit Project</div>
+        <div class="card-header"><i class="bi bi-pencil-square"></i> Edit Project 
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="card-body">
           <form action="{{ route('update', $project->id) }}" method="post">
             @csrf

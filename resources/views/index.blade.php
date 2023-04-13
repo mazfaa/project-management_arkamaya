@@ -238,7 +238,11 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="card">
-                                <div class="card-header"><i class="bi bi-plus-lg"></i> Create Project</div>
+                                <div class="card-header"><i class="bi bi-plus-lg"></i> Create Project
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
                                 <div class="card-body">
                                   <form action="{{ route('store') }}" method="post">
                                     @csrf
@@ -309,7 +313,23 @@
                           </div>
                         </div>
 
-                        <button type="submit" class="btn btn-danger"><i class="bi bi-x-circle"></i> Delete Project</button>
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target=".modal-delete"><i class="bi bi-x-circle"></i> Delete Project</button>
+                        <div class="modal fade modal-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="card">
+                                <div class="card-header"><i class="bi bi-x-circle"></i> Delete Project</div>
+                                <div class="card-body">
+                                  Are you sure want to delete this record?
+                                </div>
+                                <div class="card-footer">
+                                  <button type="submit" class="btn btn-sm btn-danger" id="deleteProjectBtn"><i class="bi bi-x-circle"></i> Delete</button>
+                                  <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="card-body">
@@ -333,9 +353,9 @@
                           @endphp
                           <tbody>
                             @foreach ($projects as $project)
-                              <tr>
+                              <tr id="projectId{{ $project->id }}">
                                 <td>
-                                  <input type="checkbox" name="">
+                                  <input type="checkbox" name="ids" class="checkbox_id" value="{{ $project->id }}" id="">
                                 </td>
                                 <td>
                                   <button type="submit" class="btn btn-sm btn-success" data-toggle="modal" data-target=".edit-modal-{{ $project->id }}"><i class="bi bi-pencil-square"></i> Edit</button>
@@ -432,6 +452,37 @@
     <script src="{{ asset('assets/js/jquery-3.6.4.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    <script>
+      $('#allCheckbox').click(function () {
+        $('.checkbox_id').prop('checked', $(this).prop('checked'));
+      });
+
+      $('#deleteProjectBtn').click(function (e) {
+        e.preventDefault();
+        let ids = [];
+
+        $('input:checkbox[name=ids]:checked').each(function () {
+          ids.push($(this).val());
+
+          $.ajax({
+            url: '{{ route('destroy') }}',
+            type: 'delete',
+            data: {
+              'ids': ids,
+              '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+              $.each(ids, function (i, e) {
+                $(`#projectId${e}`).remove();
+              });
+            }
+          });
+        });
+
+        location.reload();
+      });
+    </script>
 </body>
 
 </html>

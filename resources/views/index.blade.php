@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Project Management Web Application System by Arkamaya">
+    <meta name="author" content="M Azfa Asykarulloh">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>Arkamaya - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Arkamaya</div>
             </a>
 
             <!-- Divider -->
@@ -104,28 +104,6 @@
                 Addons
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
@@ -165,171 +143,14 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('assets/img/undraw_profile_1.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('assets/img/undraw_profile_2.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{ asset('assets/img/undraw_profile_3.svg') }}"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Arkamaya</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('assets/img/undraw_profile.svg') }}">
                             </a>
@@ -364,16 +185,16 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                   <div class="d-flex align-items-center mb-4">
-                    <form method="post">
-                      <div class="form-group d-inline-block mr-2">
+                    <form class="mr-3 border px-3 py-2 shadow" style="width: 28em;">
+                      <div class="form-group d-inline-block mr-2" style="width: 22em;">
                         <label for="project">Project Name</label>
-                        <input type="text" name="project_name" class="form-control" id="project" placeholder="WMS">
+                        <input type="text" name="search" class="form-control" id="searchProject" placeholder="WMS">
                       </div>
                       <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                     </form>
   
-                    <form action="{{ route('index') }}" class="w-25" id="clientOptForm">
-                      <div class="form-group col-md-12">
+                    <form action="{{ route('index') }}" class="d-flex ms-5 align-items-center mr-3 border px-3 py-2 shadow" id="clientOptForm" style="width: 40em;">
+                      <div class="form-group w-100 mr-3">
                         <label for="inputState">Client</label>
                         <select id="inputState" name="client" class="form-control">
                           <option value="" {{ Request::get('client') == '' ? 'selected' : '' }}>All Client</option>
@@ -384,10 +205,8 @@
                           @endforeach
                         </select>
                       </div>
-                    </form>
-  
-                    <form action="{{ route('index') }}" class="w-25" id="statusOptForm">
-                      <div class="form-group col-md-12">
+
+                      <div class="form-group d-inline-block w-100 mr-3">
                         <label for="inputState">Status</label>
                         <select id="inputState" class="form-control" name="status">
                           <option value="" {{ Request::get('status') == '' ? 'selected' : '' }}>All Status</option>
@@ -396,19 +215,79 @@
                           <option value="Done" {{ Request::get('status') == 'Done' ? 'selected' : '' }}>Done</option>
                         </select>
                       </div>
+                      <button type="submit" class="btn btn-secondary d-flex" style="margin-top: 1em"><i class="bi bi-filter mr-1"></i> Filter</button>
                     </form>
   
-                    <form action="" style="margin-top: 1.9em">
+                    <form action="{{ route('index') }}" class="ml-auto" style="margin-top: 1.9em;">
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary mr-2"><i class="bi bi-radioactive"></i> Clear</button>
+                        <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-fw fa-cog"></i> Reset</button>
                       </div>
                     </form>
                   </div>
 
                   <div class="card shadow">
-                    <div class="card-header bg-white">
-                      <button type="submit" class="btn btn-primary mr-2"><i class="bi bi-plus-lg"></i> New Project</button>
-                      <button type="submit" class="btn btn-danger"><i class="bi bi-x-circle"></i> Delete Project</button>
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="font-weight-bold text-primary">Projects Table</h6>
+                        </div>
+                      <div>
+                        <button type="submit" class="btn btn-primary mr-2" data-toggle="modal" data-target=".create-modal"><i class="bi bi-plus-circle"></i> New Project</button>
+                        <div class="modal fade create-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="card">
+                                <div class="card-header"><i class="bi bi-plus-lg"></i> Create Project</div>
+                                <div class="card-body">
+                                  <form action="{{ route('store') }}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                      <label for="projectName">Project Name</label>
+                                      <input type="text" name="project_name" class="form-control" id="projectName" placeholder="WMS">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="clientName">Client Name</label>
+                                      <input type="text" name="client_name" class="form-control" id="clientName" placeholder="NEC">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="clientAddress">Client Address</label>
+                                      <input type="text" name="client_address" class="form-control" id="clientAddress" placeholder="Bandung">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="clientChoose">Or Choose an Existing Client</label>
+                                      <select name="client_opt" id="createClientOpt" class="form-control">
+                                        <option selected>-- Select Client --</option>
+                                        @foreach ($clients as $client)
+                                            <option value="{{ $client->client_name }}">{{ $client->client_name }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="projectStart">Project Start</label>
+                                      <input type="date" name="project_start" value="{{ date('Y-m-d') }}" class="form-control" id="projectStart">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="projectEnd">Project End</label>
+                                      <input type="date" name="project_end" value="{{ date('Y-m-d') }}" class="form-control" id="projectEnd">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="createStatusOpt">Status</label>
+                                      <select name="status" id="createStatusOpt" class="form-control">
+                                        <option selected>-- Select Status --</option>
+                                        <option value="Open">Open</option>
+                                        <option value="Doing">Doing</option>
+                                        <option value="Done">Done</option>
+                                      </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-x-circle"></i> Delete Project</button>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">

@@ -1,11 +1,13 @@
 $(document).ready(function () {
   let table = new DataTable('#dataTable');
 
-  $('select[name=client]').change(function () {
-    $('#clientOptForm').submit();
-  });
-  
-  $('select[name=status]').change(function () {
-    $('#statusOptForm').submit();
+  $('select[name=clientOpt]').change(function () {
+    if ($(this).val() != '-- Select Client --') {
+      $('#clientName').attr('disabled', '');
+      $('#clientAddress').attr('disabled', '');
+    } else {
+      $('#clientName').removeAttr('disabled');
+      $('#clientAddress').removeAttr('disabled');
+    }
   });
 });

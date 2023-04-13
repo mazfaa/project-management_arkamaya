@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProjectController extends Controller
 {
@@ -17,8 +19,10 @@ class ProjectController extends Controller
       $search = $request->search;
 
       $projects = Project::select([
+        'tb_m_project.id',
         'tb_m_project.project_name',
         'tb_m_client.client_name',
+        'tb_m_client.client_address',
         'tb_m_project.project_start',
         'tb_m_project.project_end',
         'tb_m_project.project_status'
@@ -66,7 +70,9 @@ class ProjectController extends Controller
         'clients' => Client::all()
       ];
 
-      return view('index', $data);
+      return response()
+      ->view('index', $data)
+      ->header('Cache-control', 'no cache, no store, must-revalidate');
     }
 
     /**
@@ -74,31 +80,78 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        
-    }
+      $attributes = $request->validate([
+        'project_name' => ['required', 'string', 'min:3'],
+        'client_name' => ['required_if:' . $request->client_opt . ',-- Select Client --', 'string', 'min:3'],
+        'client_address' => ['required_if:' . $request->client_opt . ',-- Select Client --', 'string'],
+        'client_opt' => [
+          'required_if:client_name,null',
+          'required_if:client_address,null'
+        ],
+        'project_start' => ['required', 'date'],
+        'project_end' => ['required', 'date'],
+        'project_status' => ['required']
+      ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+      if (isset($request->client_name) && isset($request->client_address)) {
+        $client = Client::create([
+          'client_name' => $attributes['client_name'],
+          'client_address' => $attributes['client_address']
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        Project::create([
+          'client_id' => $client->id,
+          'project_name' => $attributes['project_name'],
+          'project_start' => $attributes['project_start'],
+          'project_end' => $attributes['project_end'],
+          'project_status' => $attributes['project_status']
+        ]);
+
+        Alert::success('Success!', 'Project Created Successfully!');
+        return redirect(RouteServiceProvider::HOME);
+      }
+
+      if (!isset($request->client_name) && !isset($request->client_address)) {
+        $client = Client::where('client_name', $attributes['client_opt'])->first();
+
+        Project::create([
+          'client_id' => $client->id,
+          'project_name' => $attributes['project_name'],
+          'project_start' => $attributes['project_start'],
+          'project_end' => $attributes['project_end'],
+          'project_status' => $attributes['project_status']
+        ]);
+
+        Alert::success('Success!', 'Project Created Successfully!');
+        return redirect(RouteServiceProvider::HOME);
+      }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+      $attributes = $request->validate([
+        'project_name' => ['required', 'string', 'min:3'],
+        'client_opt' => ['required'],
+        'project_start' => ['required', 'date'],
+        'project_end' => ['required', 'date'],
+        'project_status' => ['required']
+      ]);
+
+      $client = Client::where('client_name', $attributes['client_opt'])->first();
+
+        $project->update([
+          'client_id' => $client->id,
+          'project_name' => $attributes['project_name'],
+          'project_start' => $attributes['project_start'],
+          'project_end' => $attributes['project_end'],
+          'project_status' => $attributes['project_status']
+        ]);
+
+        Alert::success('Success!', 'The Project Updated Successfully!');
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

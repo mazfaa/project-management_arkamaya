@@ -12,5 +12,7 @@ class Project extends Model
 
     protected $table = 'tb_m_project';
 
+    protected $fillable = ['client_id', 'project_name', 'project_start', 'project_end', 'project_status'];
+
     protected $dates = ['project_start', 'project_end'];
 }

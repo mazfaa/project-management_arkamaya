@@ -11,6 +11,8 @@ class Client extends Model
 
     protected $table = 'tb_m_client';  
 
+    protected $fillable = ['client_name', 'client_address'];
+
     public function projects() {
         return $this->join('tb_m_project', 'tb_m_client.id', '=', 'tb_m_project.client_id')
                     ->select(

@@ -29,6 +29,8 @@
 
 <body id="page-top">
 
+    @include('sweetalert::alert')
+    
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -242,43 +244,64 @@
                                     @csrf
                                     <div class="form-group">
                                       <label for="projectName">Project Name</label>
-                                      <input type="text" name="project_name" class="form-control" id="projectName" placeholder="WMS">
+                                      <input type="text" name="project_name" value="{{ old('project_name') }}" class="form-control @error('project_name') is-invalid @enderror" id="projectName" placeholder="WMS">
+                                      @error('project_name')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="clientName">Client Name</label>
-                                      <input type="text" name="client_name" class="form-control" id="clientName" placeholder="NEC">
+                                      <input type="text" name="client_name" value="{{ old('client_name') }}" class="form-control @error('client_name') is-invalid @enderror" id="clientName" placeholder="NEC">
+                                      @error('client_name')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="clientAddress">Client Address</label>
-                                      <input type="text" name="client_address" class="form-control" id="clientAddress" placeholder="Bandung">
+                                      <input type="text" name="client_address" value="{{ old('client_address') }}" class="form-control @error('client_address') is-invalid @enderror" id="clientAddress" placeholder="Bandung">
+                                      @error('client_address')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="clientChoose">Or Choose an Existing Client</label>
-                                      <select name="client_opt" id="createClientOpt" class="form-control">
+                                      <select name="client_opt" id="createClientOpt" class="form-control @error('client_opt') is-invalid @enderror">
                                         <option selected>-- Select Client --</option>
                                         @foreach ($clients as $client)
-                                            <option value="{{ $client->client_name }}">{{ $client->client_name }}</option>
+                                            <option value="{{ $client->client_name }}" @if (old('client_opt') == $client->client_name) {{ 'selected' }} @endif>{{ $client->client_name }}</option>
                                         @endforeach
                                       </select>
+                                      @error('client_opt')
+                                          <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="projectStart">Project Start</label>
-                                      <input type="date" name="project_start" value="{{ date('Y-m-d') }}" class="form-control" id="projectStart">
+                                      <input type="date" name="project_start" value="{{ old('project_start', date('Y-m-d')) }}" class="form-control @error('project_start') is-invalid @enderror" id="projectStart">
+                                      @error('project_start')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="projectEnd">Project End</label>
-                                      <input type="date" name="project_end" value="{{ date('Y-m-d') }}" class="form-control" id="projectEnd">
+                                      <input type="date" name="project_end" value="{{ old('project_end', date('Y-m-d')) }}" class="form-control @error('project_end') is-invalid @enderror" id="projectEnd">
+                                      @error('project_end')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
                                     <div class="form-group">
                                       <label for="createStatusOpt">Status</label>
-                                      <select name="status" id="createStatusOpt" class="form-control">
+                                      <select name="project_status" id="createStatusOpt" class="form-control @error('project_status') is-invalid @enderror">
                                         <option selected>-- Select Status --</option>
-                                        <option value="Open">Open</option>
-                                        <option value="Doing">Doing</option>
-                                        <option value="Done">Done</option>
+                                        <option value="Open" @if (old('project_status') == 'Open') {{ 'selected' }} @endif>Open</option>
+                                        <option value="Doing" @if (old('project_status') == 'Doing') {{ 'selected' }} @endif>Doing</option>
+                                        <option value="Done" @if (old('project_status') == 'Done') {{ 'selected' }} @endif>Done</option>
                                       </select>
+                                      @error('project_status')
+                                          <span class="invalid-feedback">{{ $message }}</span>
+                                      @enderror
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Create</button>
                                   </form>
                                 </div>
                               </div>
@@ -315,7 +338,8 @@
                                   <input type="checkbox" name="">
                                 </td>
                                 <td>
-                                  <button type="submit" class="btn btn-sm btn-success"><i class="bi bi-pencil-square"></i> Edit</button>
+                                  <button type="submit" class="btn btn-sm btn-success" data-toggle="modal" data-target=".edit-modal-{{ $project->id }}"><i class="bi bi-pencil-square"></i> Edit</button>
+                                  @include('edit', ['project' => $project])
                                 </td>
                                 <td>{{ $project->project_name }}</td>
                                 <td>{{ $project->client_name }}</td>
@@ -405,7 +429,7 @@
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.4.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>

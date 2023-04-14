@@ -70,7 +70,7 @@
                   <span class="invalid-feedback">{{ $message }}</span>
               @enderror
             </div>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</button>
+            <button type="submit" class="btn btn-primary" id="editBtn"><i class="bi bi-pencil-square"></i> Edit</button>
           </form>
         </div>
       </div>

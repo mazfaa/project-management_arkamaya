@@ -223,7 +223,7 @@
                             <h6 class="font-weight-bold text-primary">Projects Table</h6>
                         </div>
                       <div>
-                        <button type="submit" class="btn btn-primary mr-2" data-toggle="modal" data-target=".create-modal"><i class="bi bi-plus-circle"></i> New Project</button>
+                        <button type="submit" class="btn btn-primary mr-2" data-toggle="modal" data-target=".create-modal" id="createBtn"><i class="bi bi-plus-circle"></i> New Project</button>
                         <div class="modal fade create-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -234,7 +234,7 @@
                                   </button>
                                 </div>
                                 <div class="card-body">
-                                  <form action="{{ route('store') }}" method="post">
+                                  <form action="{{ route('store') }}" method="post" id="createForm">
                                     @csrf
                                     <div class="form-group">
                                       <label for="projectName">Project Name</label>

@@ -82,7 +82,7 @@ class ProjectController extends Controller
     {
       $attributes = $request->validate([
         'project_name' => ['required', 'string', 'min:3'],
-        'client_name' => ['required_if:' . $request->client_opt . ',-- Select Client --', 'string', 'min:3'],
+        'client_name' => ['required_if:' . $request->client_opt . ',-- Select Client --', 'string', 'min:3', 'unique:tb_m_client'],
         'client_address' => ['required_if:' . $request->client_opt . ',-- Select Client --', 'string'],
         'client_opt' => [
           'required_if:client_name,null',
@@ -108,7 +108,8 @@ class ProjectController extends Controller
         ]);
 
         Alert::success('Success!', 'Project Created Successfully!');
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)
+        ->header('Cache-control', 'no cache, no store, must-revalidate');
       }
 
       if (!isset($request->client_name) && !isset($request->client_address)) {
@@ -123,7 +124,8 @@ class ProjectController extends Controller
         ]);
 
         Alert::success('Success!', 'Project Created Successfully!');
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)
+        ->header('Cache-control', 'no cache, no store, must-revalidate');
       }
     }
 
@@ -133,7 +135,7 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
       $attributes = $request->validate([
-        'project_name' => ['required', 'string', 'min:3'],
+        'project_name' => ['required', 'string', 'min:3',],
         'client_opt' => ['required'],
         'project_start' => ['required', 'date'],
         'project_end' => ['required', 'date'],
@@ -142,16 +144,17 @@ class ProjectController extends Controller
 
       $client = Client::where('client_name', $attributes['client_opt'])->first();
 
-        $project->update([
-          'client_id' => $client->id,
-          'project_name' => $attributes['project_name'],
-          'project_start' => $attributes['project_start'],
-          'project_end' => $attributes['project_end'],
-          'project_status' => $attributes['project_status']
-        ]);
+      $project->update([
+        'client_id' => $client->id,
+        'project_name' => $attributes['project_name'],
+        'project_start' => $attributes['project_start'],
+        'project_end' => $attributes['project_end'],
+        'project_status' => $attributes['project_status']
+      ]);
 
-        Alert::success('Success!', 'The Project Updated Successfully!');
-        return redirect(RouteServiceProvider::HOME);
+      Alert::success('Success!', 'The Project Updated Successfully!');
+      return redirect(RouteServiceProvider::HOME)
+      ->header('Cache-control', 'no cache, no store, must-revalidate');
     }
 
     /**
@@ -159,8 +162,9 @@ class ProjectController extends Controller
      */
     public function destroy(Request $request)
     {
-        Project::whereIn('id', $request->ids)->delete();
-        Alert::success('Success!', 'The Project Deleted Successfully!');
-        return redirect(RouteServiceProvider::HOME);
+      Project::whereIn('id', $request->ids)->delete();
+      Alert::success('Success!', 'The Project Deleted Successfully!');
+      return redirect(RouteServiceProvider::HOME)
+      ->header('Cache-control', 'no cache, no store, must-revalidate');
     }
 }

@@ -25,6 +25,9 @@
     <!-- Datatable -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
+    <link rel="icon" type="image/png" href={{ asset('assets/favicon/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href={{ asset('assets/favicon/favicon-16x16.png') }}" sizes="16x16" />
+
 </head>
 
 <body id="page-top">
@@ -159,19 +162,6 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -338,7 +328,7 @@
                           <thead>
                             <tr>
                               <th>
-                                <input type="checkbox" name="all" id="allCheckbox">
+                                <input type="checkbox" name="all" class="all-checkbox">
                               </th>
                               <th>Action</th>
                               <th>Project Name</th>
@@ -375,7 +365,7 @@
                           </tbody>
                           <tfoot>
                             <th>
-                              <input type="checkbox" name="all" id="allCheckboxFoot">
+                              <input type="checkbox" name="all" class="all-checkbox">
                             </th>
                             <th>Action</th>
                             <th>Project Name</th>
@@ -429,7 +419,10 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form action="{{ route('logout') }}" method="post">
+                      @csrf
+                      <button type="submit" class="btn btn-danger"><i class="bi bi-box-arrow-left"></i> Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -454,8 +447,10 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
     <script>
-      $('#allCheckbox').click(function () {
-        $('.checkbox_id').prop('checked', $(this).prop('checked'));
+      $('.all-checkbox').each(function () {
+        $(this).click(function () {
+          $('.checkbox_id').prop('checked', $(this).prop('checked'));
+        });
       });
 
       $('#deleteProjectBtn').click(function (e) {
